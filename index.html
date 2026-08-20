@@ -1,240 +1,366 @@
 <!DOCTYPE html>
-<html>
+<html lang="am">
 <head>
-  <meta name="google-site-verification" content="oOkPbDssaA0qHPNRLRFm1x0QNGvInYrUKEsOQMjsCd0" />
-  <meta name="google-site-verification" content="o0kPbDssaA0qHPNRL..." />
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Wallpaper App</title>
+  <meta name="google-site-verification" content="o0kPbDssaA0qHPNRLRFm1x0QNGvInYrUKEsOQMjsCd0" />
+  <title>4K & Free Fire Wallpaper App</title>
+</head>
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4K & Free Fire Wallpaper App</title>
   <style>
     * { box-sizing: border-box; }
 
     body {
       margin: 0;
       padding: 0;
-      font-family: sans-serif;
-      background-color: #e8f8f5;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d1117;
+      color: #fff;
     }
 
+    /* Keyframe Animations */
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(-20px); }
+      0% { opacity: 0; transform: translateY(-30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes inputPulse {
+      0% { box-shadow: 0 0 0px #ff4500; }
+      50% { box-shadow: 0 0 10px #ff4500; }
+      100% { box-shadow: 0 0 0px #ff4500; }
+    }
+
     @keyframes cardPop {
-      0% { opacity: 0; transform: scale(0.8); }
+      0% { opacity: 0; transform: scale(0.85); }
       100% { opacity: 1; transform: scale(1); }
     }
 
+    /* Page 1: Login & Ad Section */
     #loginPage {
-      text-align: center;
-      padding-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
       animation: fadeIn 1.2s ease-in-out;
     }
 
-    h1 {
-      color: green;
-      animation: fadeIn 1.5s ease-in-out;
+    .login-card {
+      background: #161b22;
+      border: 1px solid #333;
+      padding: 25px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+
+    .login-card h2 {
+      color: #ffcc00;
+      margin-bottom: 20px;
     }
 
     .form-group {
       margin-bottom: 15px;
-      animation: fadeIn 1.5s ease-in-out;
+      text-align: left;
     }
 
-    input[type="text"],
-    input[type="password"],
-    input[type="email"] {
-      padding: 10px;
-      width: 80%;
-      max-width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+    label {
+      font-size: 13px;
+      color: #ccc;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* Animated Input Fields */
+    input[type="text"], input[type="password"], input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #333;
+      background: #0d1117;
+      color: #fff;
+      border-radius: 8px;
       outline: none;
-      transition: transform 0.3s, border-color 0.3s;
+      transition: all 0.4s ease;
     }
 
-    input[type="text"]:focus,
-    input[type="password"]:focus,
-    input[type="email"]:focus {
-      border-color: #2c3e50;
-      transform: scale(1.05);
+    input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+      border-color: #ff4500;
+      animation: inputPulse 1.5s infinite;
+      transform: translateY(-2px);
     }
 
-    button.login-btn {
-      background-color: green;
-      color: white;
-      padding: 10px 25px;
-      font-size: 16px;
+    .show-pass {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 5px;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(45deg, #ff4500, #ffcc00);
+      color: #000;
+      font-weight: bold;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s;
+      font-size: 16px;
+      margin-top: 15px;
+      transition: 0.3s;
     }
 
-    button.login-btn:active { transform: scale(0.95); }
+    .btn-login:hover {
+      transform: scale(1.03);
+    }
 
+    /* Ad Banner on Page 1 */
+    .ad-banner {
+      width: 100%;
+      max-width: 380px;
+      margin-top: 20px;
+      padding: 15px;
+      border: 2px dashed #ffcc00;
+      border-radius: 10px;
+      background: rgba(255, 204, 0, 0.05);
+      text-align: center;
+      color: #ffcc00;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* Page 2: Wallpaper Gallery Section */
     #galleryPage {
       display: none;
-      padding: 15px;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      min-height: 100vh;
-      color: white;
-      text-align: center;
+      padding: 20px 10px;
+      max-width: 1100px;
+      margin: 0 auto;
+      animation: fadeIn 1s ease-in-out;
     }
 
-    .gallery {
+    .header {
+      text-align: center;
+      padding: 15px;
+      background: linear-gradient(180deg, #ff4500, #0d1117);
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .ff-logo {
+      width: 130px;
+      filter: drop-shadow(0 0 8px #ff4500);
+    }
+
+    .header h1 {
+      color: #ffcc00;
+      font-size: 22px;
+      margin: 5px 0 0;
+      text-transform: uppercase;
+    }
+
+    .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      padding: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      animation: cardPop 0.8s ease-out;
+      background: #161b22;
+      border: 1px solid #222;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      padding-bottom: 10px;
+      animation: cardPop 0.5s ease-in-out;
     }
 
     .card img {
       width: 100%;
-      height: 180px;
+      height: 190px;
       object-fit: cover;
-      border-radius: 8px;
     }
 
-    .download-btn {
-      display: block;
-      margin-top: 8px;
-      padding: 8px 0;
-      background: linear-gradient(45deg, #11998e, #38ef7d);
-      color: white;
-      font-size: 13px;
+    .card p {
+      margin: 8px 0;
+      font-size: 12px;
       font-weight: bold;
-      border-radius: 6px;
-      border: none;
-      width: 100%;
-      cursor: pointer;
+      color: #ffcc00;
     }
 
-    .logout-btn {
-      background: #ff4757;
-      color: white;
+    .btn-download {
+      padding: 6px 14px;
+      background: #ff4500;
+      color: #fff;
       border: none;
       border-radius: 5px;
-      padding: 8px 16px;
-      font-size: 14px;
-      margin-bottom: 10px;
       cursor: pointer;
+      font-weight: bold;
+      font-size: 12px;
     }
   </style>
 </head>
-<body onload="loadSavedData()">
+<body>
 
-  <!-- LOGIN PAGE -->
+  <!-- PAGE 1: Login & Announcement -->
   <div id="loginPage">
-    <h1>እንኳን ደህና መጡ!</h1>
+    <div class="login-card">
+      <h2>እንኳን ደህና መጡ!</h2>
+      
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="fname" placeholder="ስምዎን ያስገቡ">
+      </div>
 
-    <div class="form-group">
-      First Name <br>
-      <input type="text" id="fname" placeholder="ስምዎን ያስገቡ">
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="pass" placeholder="ፓስወርድ ያስገቡ">
+        <div class="show-pass">
+          <input type="checkbox" onclick="togglePassword()"> Show Password
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="ኢሜይል ያስገቡ">
+      </div>
+
+      <button class="btn-login" onclick="login()">Log In</button>
     </div>
 
-    <div class="form-group">
-      Password <br>
-      <input type="password" id="pass" placeholder="ፓስዎርድ ያስገቡ"><br>
-      <input type="checkbox" onclick="togglePassword()"> Show Password
+    <!-- Ad Space on Entrance Page -->
+    <div class="ad-banner">
+      📢 ማስታወቂያ፡ በቅርቡ የ Free Fire Diamond ሽልማቶች ይኖረናል!
     </div>
-
-    <div class="form-group">
-      Email <br>
-      <input type="email" id="email" placeholder="ኢሜይል ያስገቡ">
-    </div>
-
-    <button type="button" class="login-btn" onclick="login()">Log In</button>
   </div>
 
-  <!-- GALLERY PAGE -->
+  <!-- PAGE 2: 60 Wallpapers Gallery -->
   <div id="galleryPage">
-    <button class="logout-btn" onclick="logout()">Log Out</button>
-    <h2>✨ 4K HD Wallpapers ✨</h2>
+    <div class="header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Garena_Free_Fire_logo.svg/1200px-Garena_Free_Fire_logo.svg.png" alt="Free Fire Logo" class="ff-logo">
+      <h1>WALLPAPER GALLERY</h1>
+    </div>
 
-    <div class="gallery">
-      <div class="card"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000', 'wallpaper1.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000', 'wallpaper2.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000', 'wallpaper3.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1000', 'wallpaper4.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1000', 'wallpaper5.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1000', 'wallpaper6.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000', 'wallpaper7.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1000', 'wallpaper8.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000', 'wallpaper9.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?q=80&w=1000', 'wallpaper10.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1439853949127-fa647821eba0?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1439853949127-fa647821eba0?q=80&w=1000', 'wallpaper11.jpg')">📥 Download</button></div>
-      <div class="card"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000"><button class="download-btn" onclick="downloadImage('https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000', 'wallpaper12.jpg')">📥 Download</button></div>
+    <div style="text-align: right; margin-bottom: 15px;">
+      <button onclick="logout()" style="background: #e74c3c; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer;">ውጣ (Logout)</button>
+    </div>
+
+    <div class="gallery-grid" id="wallpaperContainer">
+      <!-- 60 Images dynamically generated by JS -->
     </div>
   </div>
 
   <script>
-    function loadSavedData() {
-      let savedName = localStorage.getItem("registeredName");
-      let savedEmail = localStorage.getItem("registeredEmail");
-
-      if (savedName) document.getElementById("fname").value = savedName;
-      if (savedEmail) document.getElementById("email").value = savedEmail;
-    }
-
-    function login() {
-      let firstName = document.getElementById("fname").value.trim();
-      let password = document.getElementById("pass").value.trim();
-      let email = document.getElementById("email").value.trim();
-
-      if (firstName === "" || password === "" || email === "") {
-        alert("እባክዎን ሁሉንም መረጃዎች ያሙሉ!");
-        return;
-      }
-
-      let registeredEmail = localStorage.getItem("registeredEmail");
-      let registeredPass = localStorage.getItem("registeredPass");
-
-      if (!registeredEmail) {
-        localStorage.setItem("registeredName", firstName);
-        localStorage.setItem("registeredEmail", email);
-        localStorage.setItem("registeredPass", password);
-        
-        alert("በተሳካ ሁኔታ ተመዝግበዋል!");
-        showGallery();
-      } else {
-        if (email === registeredEmail && password === registeredPass) {
-          showGallery();
-        } else {
-          alert("የተሳሳተ ኢሜይል ወይም ፓስዎርድ!");
-        }
-      }
-    }
-
-    function showGallery() {
-      document.getElementById("loginPage").style.display = "none";
-      let gallery = document.getElementById("galleryPage");
-      gallery.style.display = "block";
-      gallery.style.animation = "fadeIn 1s ease-in-out";
-    }
-
-    function logout() {
-      document.getElementById("pass").value = "";
-      document.getElementById("galleryPage").style.display = "none";
-      document.getElementById("loginPage").style.display = "block";
-    }
-
     function togglePassword() {
-      let passInput = document.getElementById("pass");
+      const passInput = document.getElementById("pass");
       passInput.type = (passInput.type === "password") ? "text" : "password";
     }
 
-    // የላቀ Download ማድረጊያ JavaScript function
+    function login() {
+      const fname = document.getElementById("fname").value;
+      const pass = document.getElementById("pass").value;
+      const email = document.getElementById("email").value;
+
+      if(fname !== "" && pass !== "" && email !== "") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("galleryPage").style.display = "block";
+      } else {
+        alert("እባክዎን ሁሉንም መስኮች ይሙሉ!");
+      }
+    }
+
+    function logout() {
+      document.getElementById("loginPage").style.display = "flex";
+      document.getElementById("galleryPage").style.display = "none";
+    }
+
+    // List of 25 Free Fire / Gaming + 35 Normal 4K Wallpapers
+    const wallpapers = [
+      // 25 Free Fire & Gaming Wallpapers
+      { name: "FF Gaming 1", url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500" },
+      { name: "FF Battle 2", url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500" },
+      { name: "Cyber Gamer 3", url: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500" },
+      { name: "Neon Setup 4", url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500" },
+      { name: "Fire Zone 5", url: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=500" },
+      { name: "Anime Warrior 6", url: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500" },
+      { name: "Dark Energy 7", url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500" },
+      { name: "Red Action 8", url: "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=500" },
+      { name: "Pro Gaming 9", url: "https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=500" },
+      { name: "Shield 10", url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500" },
+      { name: "FF Squad 11", url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500" },
+      { name: "FF Booyah 12", url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500" },
+      { name: "FF Hero 13", url: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500" },
+      { name: "Fire Dragon 14", url: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=500" },
+      { name: "FF Arena 15", url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500" },
+      { name: "Cyber Punk 16", url: "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500" },
+      { name: "Game Over 17", url: "https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=500" },
+      { name: "Red Flame 18", url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500" },
+      { name: "FF Legend 19", url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500" },
+      { name: "Night Gamer 20", url: "https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=500" },
+      { name: "FF Sniper 21", url: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=500" },
+      { name: "FF Cobra 22", url: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=500" },
+      { name: "FF Criminal 23", url: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=500" },
+      { name: "FF Rampage 24", url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500" },
+      { name: "FF Master 25", url: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=500" },
+
+      // 35 Normal 4K Beautiful Wallpapers
+      { name: "Mountain Lake 4K", url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=500" },
+      { name: "Forest Nature 4K", url: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=500" },
+      { name: "Deep Ocean 4K", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=500" },
+      { name: "Galaxy Stars 4K", url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=500" },
+      { name: "City Lights 4K", url: "https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?q=80&w=500" },
+      { name: "Sunset Beach 4K", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=500" },
+      { name: "Autumn Leaves 4K", url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=500" },
+      { name: "Abstract Waves 4K", url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500" },
+      { name: "Desert Sunset 4K", url: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=500" },
+      { name: "Neon City 4K", url: "https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=500" },
+      { name: "Snowy Peak 4K", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=500" },
+      { name: "Green Field 4K", url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=500" },
+      { name: "Space Nebula 4K", url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=500" },
+      { name: "Waterfall 4K", url: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=500" },
+      { name: "Tokyo Night 4K", url: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=500" },
+      { name: "Minimal Dark 4K", url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500" },
+      { name: "Golden Hour 4K", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=500" },
+      { name: "Purple Sky 4K", url: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=500" },
+      { name: "Rainy Glass 4K", url: "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=500" },
+      { name: "Volcano 4K", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=500" },
+      { name: "Blue Ice 4K", url: "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?q=80&w=500" },
+      { name: "Tropical Palm 4K", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=500" },
+      { name: "3D Sphere 4K", url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=500" },
+      { name: "Car Sunset 4K", url: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=500" },
+      { name: "Supercar 4K", url: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?q=80&w=500" },
+      { name: "Aesthetic Room 4K", url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500" },
+      { name: "Flower Close 4K", url: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=500" },
+      { name: "Foggy Forest 4K", url: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=500" },
+      { name: "Aurora Lights 4K", url: "https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=500" },
+      { name: "Red Moon 4K", url: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?q=80&w=500" },
+      { name: "Abstract Smoke 4K", url: "https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=500" },
+      { name: "Bridge Fog 4K", url: "https://images.unsplash.com/photo-1477959858617-67f30ac4ce78?q=80&w=500" },
+      { name: "Island View 4K", url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=500" },
+      { name: "Retro Vibe 4K", url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=500" },
+      { name: "Dark Castle 4K", url: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=500" }
+    ];
+
+    // Load Wallpapers into HTML Container
+    const container = document.getElementById("wallpaperContainer");
+    wallpapers.forEach((wp, index) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${wp.url}" alt="${wp.name}">
+        <p>${wp.name}</p>
+        <button class="btn-download" onclick="downloadImage('${wp.url}', 'wallpaper-${index+1}.jpg')">Download</button>
+      `;
+      container.appendChild(card);
+    });
+
+    // Mobile Safe Blob Download
     async function downloadImage(imageSrc, fileName) {
       try {
         const response = await fetch(imageSrc);
@@ -249,11 +375,9 @@
         window.URL.revokeObjectURL(url);
         alert("ምስሉ እየወረደ ነው!");
       } catch (error) {
-        // TrebEdit fetch ከከለከለው ወደ ምስሉ በቀጥታ ይመረዋል
         window.location.href = imageSrc;
       }
     }
   </script>
-
 </body>
 </html>
