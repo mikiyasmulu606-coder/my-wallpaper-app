@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="am">
 <head>
@@ -256,17 +255,33 @@
       passInput.type = (passInput.type === "password") ? "text" : "password";
     }
 
+    // ⭐️ የተስተካከለው የ Login Logic
     function login() {
-      const fname = document.getElementById("fname").value;
+      const fname = document.getElementById("fname").value.trim();
       const pass = document.getElementById("pass").value;
-      const email = document.getElementById("email").value;
+      const email = document.getElementById("email").value.trim();
 
-      if(fname !== "" && pass !== "" && email !== "") {
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("galleryPage").style.display = "block";
-      } else {
-        alert("እባክዎን ሁሉንም መስኮች ይሙሉ!");
+      // 1. የስም ፍተሻ
+      if (fname === "") {
+        alert("እባክዎን ስምዎን ያስገቡ!");
+        return;
       }
+
+      // 2. የፓስወርድ ፍተሻ (ቢያንስ 6 አሃዝ)
+      if (pass.length < 6) {
+        alert("ፓስወርድ ቢያንስ 6 አሃዝ መሆን አለበት!");
+        return;
+      }
+
+      // 3. የኢሜይል ፍተሻ (@ እና . መኖሩን ያረጋግጣል)
+      if (!email.includes("@") || !email.includes(".")) {
+        alert("እባክዎን ትክክለኛ ኢሜይል ያስገቡ (ለምሳሌ test@gmail.com)!");
+        return;
+      }
+
+      // ሁሉንም ህግ ካሟላ ብቻ ያሳልፋል
+      document.getElementById("loginPage").style.display = "none";
+      document.getElementById("galleryPage").style.display = "block";
     }
 
     function logout() {
